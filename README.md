@@ -27,15 +27,18 @@ If some property is not set the plugin won't do something.
     * youtube.playlistid: That's the playlist the newest videos are taken from. If you click on your youtube page besides 'Uploads' on 'Play all' you will find the playlist id for all your videos in the url. Example: 'UUpLVP1s0eE8sL5-246C4ZNg'
     * (optional) youtube.count: How many videos of the playlist should be shown. Default is 3.
     * (optional) youtube.headline: That's the headline used in the html output for the news section. Default is 'Youtube'
+    * (optional) youtube.order: The .order is the place at which the output of the plugin is placed. Lower number means higher place. Default is '3'.
 * Flickr
     * flickr.apikey: The private api key for you. Get one here: https://www.flickr.com/services/apps/create/apply/
     * flickr.userid: Your user id. You can find it on your flickr page in the url. Example: '99480279@N08'
     * (optional)flickr.count: How many pictures should be grabbed and shown, default is 3.
     * (optional) flickr.headline: Default is 'Flickr'
+    * (optional) flickr.order: Together with the other plugins .order properties this defines the order of the output. Default is '2'.
 * Wordpress.com
     * wordpress.sites: The blogs the posts should be taken from. If you have more than one you can list them comma separated. E.g 'levinte.wordpress.com,livingsheep.wordpress.com'
     * (optional) wordpress.count: How many posts per site should be shown, defaul is three
     * (optional) wordpress.headline: Default is 'Blog'
+    * (optional) wordpress.order: Default is '1'. So the output of this plugin will be the first on your page. 
     
 For the output:
 

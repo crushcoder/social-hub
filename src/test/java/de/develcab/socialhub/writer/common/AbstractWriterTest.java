@@ -20,7 +20,7 @@ public class AbstractWriterTest {
         two.setRawHtml("<div>second News</div>");
         streamOne.add(one);
         streamOne.add(two);
-        NewsStream newsStreamOne = new NewsStream("Headline One", streamOne);
+        NewsStream newsStreamOne = new NewsStream("Headline One", streamOne, 1);
         allNews.add(newsStreamOne);
 
         List<News> streamTwo = new ArrayList<>();
@@ -33,7 +33,7 @@ public class AbstractWriterTest {
         streamTwo.add(three);
         streamTwo.add(four);
         streamTwo.add(five);
-        NewsStream newsStreamTwo = new NewsStream("Headline Two", streamTwo);
+        NewsStream newsStreamTwo = new NewsStream("Headline Two", streamTwo, 2);
         allNews.add(newsStreamTwo);
 
         return allNews;

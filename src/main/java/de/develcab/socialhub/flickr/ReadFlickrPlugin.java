@@ -33,6 +33,9 @@ public class ReadFlickrPlugin implements ReadPlugin {
     @Value("${flickr.headline}")
     private String headline;
 
+    @Value("${flickr.order:1}")
+    private int order;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -60,5 +63,10 @@ public class ReadFlickrPlugin implements ReadPlugin {
     @Override
     public String getHeadline() {
         return headline != null ? headline : "";
+    }
+
+    @Override
+    public int gerOrder() {
+        return order;
     }
 }

@@ -36,6 +36,9 @@ public class ReadWordpressPlugin implements ReadPlugin {
     @Value("${wordpress.count}")
     private int count = 3;
 
+    @Value("${wordpress.order:1}")
+    private int order;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -79,5 +82,10 @@ public class ReadWordpressPlugin implements ReadPlugin {
     @Override
     public String getHeadline() {
         return headline;
+    }
+
+    @Override
+    public int gerOrder() {
+        return order;
     }
 }

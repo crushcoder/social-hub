@@ -33,6 +33,9 @@ public class ReadYoutubePlugin implements ReadPlugin {
     @Value("${youtube.apikey:}")
     private String apiKey;
 
+    @Value("${youtube.order:1}")
+    private int order;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -59,5 +62,10 @@ public class ReadYoutubePlugin implements ReadPlugin {
     @Override
     public String getHeadline() {
         return headline != null ? headline : "";
+    }
+
+    @Override
+    public int gerOrder() {
+        return order;
     }
 }

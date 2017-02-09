@@ -26,4 +26,11 @@ public interface ReadPlugin {
      */
     String getHeadline();
 
+    /**
+     * A number that defines the ordering of the output of all plugins.
+     * Lowest number will be first, equal numbers will be in random order, eventually different from run to run.
+     *
+     * @return the order, lowest number will be first in output
+     */
+    int gerOrder();
 }

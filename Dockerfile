@@ -1,5 +1,7 @@
 FROM maven:3.3.9-jdk-8
 
+MAINTAINER Juergen Bruester github@devilscab.de
+
 RUN mkdir /prj
 COPY src /prj/src
 COPY pom.xml /prj/
