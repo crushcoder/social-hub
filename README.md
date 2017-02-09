@@ -42,12 +42,12 @@ For the output:
 * Write a local html file
     * local.filewriter.filename: absolute or relative path and filename for the file to be written.
 * Upload html file to FTP Server. We expect a FTP/SSL Server
-    * (Optional) ftp.writer.filename: The filename that will be used, default is 'news.html'
-    * ftp.writer.directory: The directory on the FTP server that the file will be created in
     * ftp.writer.server: Hostname/IP/Url of your FTP Server
-    * (Optional) ftp.writer.port: Port of the FTP server, defaul is 21.
     * ftp.writer.username: Username on the server
     * ftp.writer.password: Password on the server
+    * (Optional) ftp.writer.directory: The directory on the FTP server that the file will be created in. Default is the root directory '/'.
+    * (Optional) ftp.writer.filename: The filename that will be used, default is 'news.html'
+    * (Optional) ftp.writer.port: Port of the FTP server, default is 21.
     
 ## Run
 
@@ -59,9 +59,10 @@ You can either run the jar file or an docker image. In both cases you have to pr
 
 ### the docker image
 
-    docker run -e "youtube.apikey=your.api.key" -e "youtube.playlistid=your.playlist.id" develcab/socialhub
+    docker run -e "youtube_apikey=your.api.key" -e "youtube_playlistid=your.playlist.id" [...] develcab/socialhub
     
-I expect that you won't use this to generate a local file but to upload it e.g. via FTP or to S3.
+I expect that you won't use this to generate a local file but to upload via FTP or to S3.
+The configuration have to be provided by environment variables, therefore the dot "." that is used in Java has to be replaced by an underscore "_".
 
 ## Build
 
