@@ -35,11 +35,11 @@ public class FtpConfiguration {
     @Value("${ftp.writer.port:21}")
     private int port;
 
-    @Value("${ftp.writer.directory:}")
-    private String directory;
+    @Value("${ftp.writer.directory:''}")
+    private String directory = "";
 
     @Value("${ftp.writer.filename:'news.html'}")
-    private String filename;
+    private String filename = "news.html";
 
     @MessagingGateway
     public interface FtpGateway {
@@ -50,6 +50,10 @@ public class FtpConfiguration {
 
     @Bean
     public SessionFactory<FTPFile> ftpSessionFactory() {
+        if (!isConfigured()) {
+            return () -> null;
+        }
+
         DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();
         sf.setHost(host);
         sf.setPort(port);
@@ -61,9 +65,23 @@ public class FtpConfiguration {
     @Bean
     @ServiceActivator(inputChannel = FTP_CHANNEL)
     public MessageHandler handler() {
+        if (!isConfigured()) {
+            return message -> {
+                // do nothing
+            };
+        }
+
         FtpMessageHandler handler = new FtpMessageHandler(ftpSessionFactory());
         handler.setRemoteDirectoryExpression(new LiteralExpression(directory));
         handler.setFileNameGenerator(message -> filename);
         return handler;
+    }
+
+    private boolean isConfigured() {
+        return isConfigured(username) && isConfigured(password) && isConfigured(host);
+    }
+
+    private boolean isConfigured(String attribute) {
+        return attribute != null && !attribute.isEmpty();
     }
 }

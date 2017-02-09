@@ -3,6 +3,7 @@ package de.develcab.socialhub.writer.ftpwriter;
 import de.develcab.socialhub.Application;
 import de.develcab.socialhub.model.NewsStream;
 import de.develcab.socialhub.write.common.HtmlGenerator;
+import de.develcab.socialhub.write.ftpwriter.FtpConfiguration;
 import de.develcab.socialhub.write.ftpwriter.FtpWriterPlugin;
 import de.develcab.socialhub.writer.common.AbstractWriterTest;
 import org.junit.Assert;
@@ -53,12 +54,12 @@ public class FtpWriterPluginTest extends AbstractWriterTest {
 
     @Test
     public void test2NoConfig() {
-        String username = (String) ReflectionTestUtils.getField(ftpWriterPlugin, "username");
-        ReflectionTestUtils.setField(ftpWriterPlugin, "username", "");
+        FtpConfiguration.FtpGateway ftpGateway = (FtpConfiguration.FtpGateway) ReflectionTestUtils.getField(ftpWriterPlugin, "ftpGateway");
+        ReflectionTestUtils.setField(ftpWriterPlugin, "ftpGateway", null);
 
         List<NewsStream> news = this.createNews();
         ftpWriterPlugin.write(news);
-        ReflectionTestUtils.setField(ftpWriterPlugin, "username", username);
+        ReflectionTestUtils.setField(ftpWriterPlugin, "ftpGateway", ftpGateway);
 
         // load file via http
         String remoteFile = restTemplate.getForObject(testUrl, String.class);

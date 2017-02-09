@@ -4,7 +4,6 @@ import de.develcab.socialhub.WritePlugin;
 import de.develcab.socialhub.model.NewsStream;
 import de.develcab.socialhub.write.common.HtmlGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,18 +18,16 @@ import java.util.List;
 @Service
 public class FtpWriterPlugin implements WritePlugin {
 
-    @Value("${ftp.writer.username:}")
-    private String username;
 
     @Autowired
     private HtmlGenerator htmlGenerator;
 
-    @Autowired
+    @Autowired(required = false)
     private FtpConfiguration.FtpGateway ftpGateway;
 
     @Override
     public void write(List<NewsStream> news) {
-        if(news == null || news.isEmpty() || username == null || username.isEmpty()) {
+        if (ftpGateway == null) { // not configured
             return;
         }
 

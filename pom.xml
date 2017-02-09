@@ -29,9 +29,6 @@
         <spring.integration.version>4.3.5.RELEASE</spring.integration.version>
 
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
-        
-        <!-- Youtube / Google -->
-        <youtube.api.key>${youtube.api.key}</youtube.api.key>
     </properties>
 
     <build>
