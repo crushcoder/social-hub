@@ -11,12 +11,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by jbruester on 13.10.16.
  */
 @Component
 public class ReadYoutubePlugin implements ReadPlugin {
+    private static final Logger LOGGER = Logger.getLogger(ReadYoutubePlugin.class.getName());
     private static final String PlAYLIST_ITEM_URL_TEMPLATE = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=%s&key=%s&maxResults=%s";
 
     @Value("${youtube.headline}")
@@ -43,6 +45,7 @@ public class ReadYoutubePlugin implements ReadPlugin {
             return Collections.emptyList();
         }
 
+        LOGGER.info("Reading Youtube Playlist");
         String apiUrl = String.format(PlAYLIST_ITEM_URL_TEMPLATE, playlistId, apiKey, count);
         ResponseEntity<PlaylistItemResponse> response = restTemplate.getForEntity(apiUrl, PlaylistItemResponse.class);
 

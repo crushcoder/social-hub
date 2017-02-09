@@ -9,4 +9,4 @@ RUN mvn install -DskipTests=true
 
 WORKDIR /prj/target
 
-CMD ["bash"]
+CMD ["java", "-jar", "social-hub-1.0.0-SNAPSHOT.jar"]

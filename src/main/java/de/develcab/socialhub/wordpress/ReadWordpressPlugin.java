@@ -15,12 +15,14 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by jb on 27.01.17.
  */
 @Service
 public class ReadWordpressPlugin implements ReadPlugin {
+    private static final Logger LOGGER = Logger.getLogger(ReadWordpressPlugin.class.getName());
     private static final String URL_TEMPLATE = "https://public-api.wordpress.com/rest/v1.1/sites/%s/posts/?number=%s&fields=date,title,URL,excerpt";
     private static final String HTML_TEMPLATE = "<h4 class=\"wordpressNews\">%s</h4><a class=\"wordpressNews\" href=\"%s\">%s</a>";
 
@@ -46,6 +48,7 @@ public class ReadWordpressPlugin implements ReadPlugin {
         List<News> news = new ArrayList<>();
 
         siteNames.forEach(siteName -> {
+            LOGGER.info("Reading wordpress blog " + siteName);
             String url = String.format(URL_TEMPLATE, siteName, count);
             ResponseEntity<Blog> blogResponse = restTemplate.getForEntity(url, Blog.class);
 

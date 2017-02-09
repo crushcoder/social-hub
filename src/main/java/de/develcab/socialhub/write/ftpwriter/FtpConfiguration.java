@@ -1,5 +1,6 @@
 package de.develcab.socialhub.write.ftpwriter;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -59,6 +60,7 @@ public class FtpConfiguration {
         sf.setPort(port);
         sf.setUsername(username);
         sf.setPassword(password);
+        sf.setClientMode(FTPClient.PASSIVE_LOCAL_DATA_CONNECTION_MODE);
         return new CachingSessionFactory<FTPFile>(sf);
     }
 

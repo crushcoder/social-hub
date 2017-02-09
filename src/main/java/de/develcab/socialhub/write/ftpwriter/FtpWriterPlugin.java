@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This WritePlugin writes a HTML output file with your news to an FTP server.
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class FtpWriterPlugin implements WritePlugin {
+    private static final Logger LOGGER = Logger.getLogger(FtpWriterPlugin.class.getName());
 
 
     @Autowired
@@ -31,7 +33,9 @@ public class FtpWriterPlugin implements WritePlugin {
             return;
         }
 
+        LOGGER.info("Start writing file to FTP Server");
         String html = htmlGenerator.generateHtml(news);
         ftpGateway.sendHtmlOutput(html);
+        LOGGER.info("Written file to FTP");
     }
 }
